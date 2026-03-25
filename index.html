@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sneackers Sales</title>
+
+<style>
+body {font-family: Arial; margin:0; background:#0f172a; color:white;}
+header {padding:20px; text-align:center; background:#020617;}
+h1 {color:#38bdf8;}
+
+.products {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:20px;}
+
+.card {
+background:#1e293b; padding:15px; border-radius:15px; text-align:center;
+transition:0.4s; transform:translateY(20px); opacity:0;
+animation:fadeIn 0.6s forwards;
+}
+
+.card:hover {transform:scale(1.05);}
+
+@keyframes fadeIn {
+to {opacity:1; transform:translateY(0);}
+}
+
+img {width:100%; border-radius:10px;}
+
+button {margin:5px; padding:10px; border:none; border-radius:10px; cursor:pointer;}
+
+.whatsapp {background:#25D366;}
+.insta {background:#E1306C;}
+.facebook {background:#1877F2;}
+.cart-btn {background:#38bdf8; color:black;}
+
+#cart {
+position:fixed; right:0; top:0;
+width:300px; height:100%;
+background:#020617;
+padding:20px;
+overflow:auto;
+}
+
+footer {text-align:center; padding:20px; background:#020617;}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1> Sneackers Sales 👟</h1>
+<p>Modern Sneakers Store</p>
+</header>
+
+<div id="cart">
+<h2>🛒 Cart</h2>
+<ul id="cart-items"></ul>
+<p id="total">Total: $0</p>
+<button onclick="checkout()">Order via WhatsApp</button>
+</div>
+
+<section class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/300">
+<h3>Nike Air</h3>
+<p>$120</p>
+<button class="cart-btn" onclick="addToCart('Nike Air',120)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300">
+<h3>Adidas Boost</h3>
+<p>$140</p>
+<button class="cart-btn" onclick="addToCart('Adidas Boost',140)">Add to Cart</button>
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Sneackers Sales</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(product, price){
+cart.push({product, price});
+renderCart();
+}
+
+function renderCart(){
+let list = document.getElementById("cart-items");
+let total = 0;
+list.innerHTML = "";
+
+cart.forEach(item => {
+let li = document.createElement("li");
+li.textContent = item.product + " - $" + item.price;
+list.appendChild(li);
+total += item.price;
+});
+
+document.getElementById("total").textContent = "Total: $" + total;
+}
+
+function checkout(){
+let phone = "216XXXXXXXX";
+let message = "Order:%0A";
+
+cart.forEach(item => {
+message += item.product + " - $" + item.price + "%0A";
+});
+
+let link = "https://wa.me/" + phone + "?text=" + message;
+window.open(link, "_blank");
+}
+</script>
+
+</body>
+</html>

@@ -6,97 +6,164 @@
 <title>Sneackers Sales</title>
 
 <style>
-body {font-family: Arial; margin:0; background:#0f172a; color:white;}
-header {padding:20px; text-align:center; background:#020617;}
-h1 {color:#38bdf8;}
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+font-family: Arial;
+background: linear-gradient(135deg,#020617,#0f172a);
+color:white;
+overflow-x:hidden;
+}
 
-.products {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:20px;}
+/* NAV */
+header {
+padding:20px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+letter-spacing:2px;
+animation: slideDown 1s ease;
+}
+
+@keyframes slideDown {
+from {transform:translateY(-50px); opacity:0;}
+to {transform:translateY(0); opacity:1;}
+}
+
+/* PRODUCTS */
+.products {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:40px;
+}
 
 .card {
-background:#1e293b; padding:15px; border-radius:15px; text-align:center;
-transition:0.4s; transform:translateY(20px); opacity:0;
-animation:fadeIn 0.6s forwards;
+background: rgba(255,255,255,0.05);
+backdrop-filter: blur(10px);
+border-radius:20px;
+padding:15px;
+text-align:center;
+transition:0.4s;
+transform:translateY(60px);
+opacity:0;
 }
 
-.card:hover {transform:scale(1.05);}
-
-@keyframes fadeIn {
-to {opacity:1; transform:translateY(0);}
+/* HOVER ANIMATION */
+.card:hover {
+transform: scale(1.07) rotate(1deg);
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
 
-img {width:100%; border-radius:10px;}
+/* IMAGE ANIMATION */
+.card img {
+width:100%;
+border-radius:15px;
+transition:0.4s;
+}
+.card:hover img {
+transform:scale(1.1);
+}
 
-button {margin:5px; padding:10px; border:none; border-radius:10px; cursor:pointer;}
+/* BUTTON */
+button {
+margin-top:10px;
+padding:10px 15px;
+border:none;
+border-radius:10px;
+background:#38bdf8;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+button:hover {
+transform:scale(1.1);
+}
 
-.whatsapp {background:#25D366;}
-.insta {background:#E1306C;}
-.facebook {background:#1877F2;}
-.cart-btn {background:#38bdf8; color:black;}
+/* CART */
+#cartBtn {
+position:fixed;
+top:20px;
+right:20px;
+background:#38bdf8;
+padding:12px;
+border-radius:50%;
+cursor:pointer;
+}
 
-#cart {
-position:fixed; right:0; top:0;
-width:300px; height:100%;
+#cartBox {
+position:fixed;
+top:0;
+right:-320px;
+width:300px;
+height:100%;
 background:#020617;
 padding:20px;
+transition:0.4s;
 overflow:auto;
 }
 
-footer {text-align:center; padding:20px; background:#020617;}
+#cartBox.active {
+right:0;
+}
+
+/* SCROLL ANIMATION ACTIVE */
+.show {
+transform:translateY(0);
+opacity:1;
+transition:0.6s;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-<h1> Sneackers Sales 👟</h1>
-<p>Modern Sneakers Store</p>
-</header>
+<header>👟 Sneackers Sales</header>
 
-<div id="cart">
-<h2>🛒 Cart</h2>
-<ul id="cart-items"></ul>
+<div id="cartBtn" onclick="toggleCart()">🛒</div>
+
+<div id="cartBox">
+<h2>Cart</h2>
+<ul id="cartItems"></ul>
 <p id="total">Total: $0</p>
-<button onclick="checkout()">Order via WhatsApp</button>
+<button onclick="checkout()">Order WhatsApp</button>
 </div>
 
 <section class="products">
 
 <div class="card">
-<img src="https://via.placeholder.com/300">
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519">
 <h3>Nike Air</h3>
 <p>$120</p>
-<button class="cart-btn" onclick="addToCart('Nike Air',120)">Add to Cart</button>
+<button onclick="addToCart('Nike Air',120)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/300">
+<img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db">
 <h3>Adidas Boost</h3>
 <p>$140</p>
-<button class="cart-btn" onclick="addToCart('Adidas Boost',140)">Add to Cart</button>
+<button onclick="addToCart('Adidas Boost',140)">Add to Cart</button>
 </div>
 
 </section>
 
-<footer>
-<p>© 2026 Sneackers Sales</p>
-</footer>
-
 <script>
+/* CART */
 let cart = [];
 
-function addToCart(product, price){
-cart.push({product, price});
+function addToCart(name, price){
+cart.push({name,price});
 renderCart();
 }
 
 function renderCart(){
-let list = document.getElementById("cart-items");
+let list = document.getElementById("cartItems");
 let total = 0;
 list.innerHTML = "";
 
-cart.forEach(item => {
+cart.forEach(item=>{
 let li = document.createElement("li");
-li.textContent = item.product + " - $" + item.price;
+li.textContent = item.name + " - $" + item.price;
 list.appendChild(li);
 total += item.price;
 });
@@ -104,17 +171,30 @@ total += item.price;
 document.getElementById("total").textContent = "Total: $" + total;
 }
 
-function checkout(){
-let phone = "216XXXXXXXX";
-let message = "Order:%0A";
-
-cart.forEach(item => {
-message += item.product + " - $" + item.price + "%0A";
-});
-
-let link = "https://wa.me/" + phone + "?text=" + message;
-window.open(link, "_blank");
+function toggleCart(){
+document.getElementById("cartBox").classList.toggle("active");
 }
+
+function checkout(){
+let phone="216XXXXXXXX";
+let msg="Order:%0A";
+cart.forEach(i=>{
+msg+=i.name+" - $"+i.price+"%0A";
+});
+window.open("https://wa.me/"+phone+"?text="+msg);
+}
+
+/* SCROLL ANIMATION */
+let cards = document.querySelectorAll(".card");
+
+window.addEventListener("scroll", ()=>{
+cards.forEach(card=>{
+let top = card.getBoundingClientRect().top;
+if(top < window.innerHeight - 100){
+card.classList.add("show");
+}
+});
+});
 </script>
 
 </body>

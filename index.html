@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Store - Shop Now</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #555;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Products Grid */
+        .products {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        /* Order Buttons */
+        .order-buttons {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        .btn-order {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1eaa50;
+            transform: scale(1.02);
+        }
+
+        .btn-instagram {
+            background-color: #E4405F;
+            color: white;
+        }
+
+        .btn-instagram:hover {
+            background-color: #d03a59;
+            transform: scale(1.02);
+        }
+
+        .btn-messenger {
+            background-color: #0084FF;
+            color: white;
+        }
+
+        .btn-messenger:hover {
+            background-color: #0073e6;
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-buttons {
+                flex-direction: row;
+            }
+
+            .btn-order {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">🛍️ Your Store</div>
+            <div class="social-icons">
+                <a href="https://instagram.com/yourusername" target="_blank" title="Instagram">📷</a>
+                <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp">💬</a>
+                <a href="https://m.me/yourpage" target="_blank" title="Messenger">✉️</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Our Store</h1>
+        <p>High Quality Products - Order via Instagram, WhatsApp or Messenger</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <h2>Our Products</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">Product Image 1</div>
+                <div class="product-info">
+                    <div class="product-name">Premium Product 1</div>
+                    <div class="product-description">High quality item with excellent features. Perfect for everyday use.</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="order-buttons">
+                        <a href="https://wa.me/1234567890?text=Hi! I'm interested in Premium Product 1 ($29.99)" class="btn-order btn-whatsapp">WhatsApp 💚</a>
+                        <a href="https://instagram.com/yourusername" class="btn-order btn-instagram">DM on Instagram 📷</a>
+                        <a href="https://m.me/yourpage?text=Hi! I'm interested in Premium Product 1 ($29.99)" class="btn-order btn-messenger">Messenger 💙</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">Product Image 2</div>
+                <div class="product-info">
+                    <div class="product-name">Premium Product 2</div>
+                    <div class="product-description">Stylish design with superior quality. Must-have for modern lifestyle.</div>
+                    <div class="product-price">$39.99</div>
+                    <div class="order-buttons">
+                        <a href="https://wa.me/1234567890?text=Hi! I'm interested in Premium Product 2 ($39.99)" class="btn-order btn-whatsapp">WhatsApp 💚</a>
+                        <a href="https://instagram.com/yourusername" class="btn-order btn-instagram">DM on Instagram 📷</a>
+                        <a href="https://m.me/yourpage?text=Hi! I'm interested in Premium Product 2 ($39.99)" class="btn-order btn-messenger">Messenger 💙</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">Product Image 3</div>
+                <div class="product-info">
+                    <div class="product-name">Premium Product 3</div>
+                    <div class="product-description">Exclusive collection with premium craftsmanship. Limited edition available.</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="order-buttons">
+                        <a href="https://wa.me/1234567890?text=Hi! I'm interested in Premium Product 3 ($49.99)" class="btn-order btn-whatsapp">WhatsApp 💚</a>
+                        <a href="https://instagram.com/yourusername" class="btn-order btn-instagram">DM on Instagram 📷</a>
+                        <a href="https://m.me/yourpage?text=Hi! I'm interested in Premium Product 3 ($49.99)" class="btn-order btn-messenger">Messenger 💙</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">Product Image 4</div>
+                <div class="product-info">
+                    <div class="product-name">Premium Product 4</div>
+                    <div class="product-description">Best seller! Trusted by thousands of customers worldwide.</div>
+                    <div class="product-price">$24.99</div>
+                    <div class="order-buttons">
+                        <a href="https://wa.me/1234567890?text=Hi! I'm interested in Premium Product 4 ($24.99)" class="btn-order btn-whatsapp">WhatsApp 💚</a>
+                        <a href="https://instagram.com/yourusername" class="btn-order btn-instagram">DM on Instagram 📷</a>
+                        <a href="https://m.me/yourpage?text=Hi! I'm interested in Premium Product 4 ($24.99)" class="btn-order btn-messenger">Messenger 💙</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image">Product Image 5</div>
+                <div class="product-info">
+                    <div class="product-name">Premium Product 5</div>
+                    <div class="product-description">Ultra premium with lifetime warranty. Investment piece for quality lovers.</div>
+                    <div class="product-price">$59.99</div>
+                    <div class="order-buttons">
+                        <a href="https://wa.me/1234567890?text=Hi! I'm interested in Premium Product 5 ($59.99)" class="btn-order btn-whatsapp">WhatsApp 💚</a>
+                        <a href="https://instagram.com/yourusername" class="btn-order btn-instagram">DM on Instagram 📷</a>
+                        <a href="https://m.me/yourpage?text=Hi! I'm interested in Premium Product 5 ($59.99)" class="btn-order btn-messenger">Messenger 💙</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image">Product Image 6</div>
+                <div class="product-info">
+                    <div class="product-name">Premium Product 6</div>
+                    <div class="product-description">Eco-friendly option with sustainable materials. Perfect for conscious shoppers.</div>
+                    <div class="product-price">$34.99</div>
+                    <div class="order-buttons">
+                        <a href="https://wa.me/1234567890?text=Hi! I'm interested in Premium Product 6 ($34.99)" class="btn-order btn-whatsapp">WhatsApp 💚</a>
+                        <a href="https://instagram.com/yourusername" class="btn-order btn-instagram">DM on Instagram 📷</a>
+                        <a href="https://m.me/yourpage?text=Hi! I'm interested in Premium Product 6 ($34.99)" class="btn-order btn-messenger">Messenger 💙</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Your Store. All rights reserved.</p>
+        <p>Order via WhatsApp, Instagram DM, or Messenger - We'll get back to you ASAP!</p>
+    </footer>
+</body>
+</html>

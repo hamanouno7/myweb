@@ -3,118 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Website</title>
+    <title>Sneakers E-commerce</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        .slider {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in;
-        }
-        .slides img {
-            width: 100%;
-        }
-        .cart {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        /* Add more styles for your e-commerce layout below */
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-        }
-        .product {
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 10px;
-            padding: 10px;
-            width: 30%;
-            transition: transform 0.3s;
-        }
-        .product:hover {
-            transform: scale(1.05);
-        }
-        /* Add responsive styles here */
-    </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Our E-Store</h1>
+        <h1>Sneakers Sale</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#cart">Cart</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    <div class="slider">
-        <div class="slides">
-            <img src="slide1.jpg" alt="Slide 1">
-            <img src="slide2.jpg" alt="Slide 2">
-            <img src="slide3.jpg" alt="Slide 3">
-        </div>
-    </div>
-    <div class="cart">
-        <h2>Shopping Cart</h2>
-        <div id="cart-items">No items in cart</div>
-    </div>
-    <div class="products">
-        <div class="product">
-            <h2>Product 1</h2>
-            <p>Description for product 1.</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <h2>Product 2</h2>
-            <p>Description for product 2.</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <h2>Product 3</h2>
-            <p>Description for product 3.</p>
-            <button>Add to Cart</button>
-        </div>
-        <!-- Add more products as needed -->
-    </div>
+    <main>
+        <section id="home">
+            <div class="hero">
+                <h2>Shop the Latest Sneakers</h2>
+                <p>Get the best deals on trendy sneakers.</p>
+            </div>
+        </section>
+        <section id="products">
+            <h2>Featured Products</h2>
+            <div class="product-gallery">
+                <div class="product-slide">
+                    <img src="sneaker1.jpg" alt="Sneaker 1">
+                    <div class="product-info">
+                        <h3>Sneaker Model 1</h3>
+                        <p>$100.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-slide">
+                    <img src="sneaker2.jpg" alt="Sneaker 2">
+                    <div class="product-info">
+                        <h3>Sneaker Model 2</h3>
+                        <p>$120.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="cart">
+            <h2>Your Cart</h2>
+            <div class="cart-items"></div>
+            <button class="checkout-button">Checkout via WhatsApp</button>
+            <button class="checkout-button">Checkout via Instagram</button>
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
     <footer>
-        <p>Connect with us on <a href="https://wa.me/yournumber">WhatsApp</a> and <a href="https://instagram.com/yourhandle">Instagram</a></p>
+        <p>&copy; 2026 Sneakers Sale. All rights reserved.</p>
     </footer>
-    <script>
-        // JavaScript for cart functionality and smooth animations
-        const cartButton = document.querySelectorAll('.product button');
-        const cartItems = document.getElementById('cart-items');
-        let cart = [];
-
-        cartButton.forEach(button => {
-            button.addEventListener('click', () => {
-                const productName = button.parentElement.querySelector('h2').innerText;
-                cart.push(productName);
-                updateCart();
-            });
-        });
-
-        function updateCart() {
-            cartItems.innerText = cart.length > 0 ? cart.join(', ') : 'No items in cart';
-        }
-    </script>
 </body>
 </html>
